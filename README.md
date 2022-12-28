@@ -1,2 +1,3 @@
-# example-webdriverio7-javascript-ufg
-Applitools Example: WebdriverIO 7 JavaScript with the Ultrafast Grid
+# Applitools Example: WebdriverIO 7 JavaScript with the Ultrafast Grid
+
+TBD
