@@ -1,4 +1,4 @@
-# Applitools Example: WebdriverIO 7 JavaScript with the Ultrafast Grid
+# Applitools Example: WebdriverIO 7 JavaScript with the Classic Runner
 
 This is the example project for the [WebdriverIO JavaScript tutorial](https://applitools.com/tutorials/quickstart/web/webdriverio/webdriverio-7).
 It shows how to start automating visual tests
@@ -33,4 +33,4 @@ npm test
 ```
 
 **For full instructions on running this project, take our
-[WebdriverIO JavaScript tutorial](https://applitools.com/tutorials/quickstart/web/webdriverio/webdriverio-7)!**
+[Selenium JavaScript tutorial](https://applitools.com/tutorials/selenium-javascript.html)!**
