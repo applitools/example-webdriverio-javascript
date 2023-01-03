@@ -27,6 +27,7 @@ To install project dependencies, run:
 
 ```
 npm install
+npm install chromedriver --detect_chromedriver_version
 ```
 
 The main test case is [`acme-bank.test.js`](test/acme-bank.test.js).

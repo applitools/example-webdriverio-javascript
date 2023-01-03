@@ -25,5 +25,8 @@ jobs:
       - name: Clean install the project
         run: npm ci
 
+      - name: Install ChromeDriver
+        run: npm install chromedriver --detect_chromedriver_version
+
       - name: Execute all tests
         run: npm test
