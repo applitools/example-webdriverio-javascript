@@ -130,11 +130,11 @@ describe('ACME Bank', function () {
     // If any checkpoints are unresolved or failed, then `eyes.close()` will make the ACME demo app test fail.
   });
   
-  after(async () => {
-    // Close the batch and report visual differences to the console.
-    // Note that it forces Mocha to wait synchronously for all visual checkpoints to complete.
-    const allTestResults = await runner.getAllTestResults();
-    console.log(allTestResults);
-  });
+  // after(async () => {
+  //   // Close the batch and report visual differences to the console.
+  //   // Note that it forces Mocha to wait synchronously for all visual checkpoints to complete.
+  //   const allTestResults = await runner.getAllTestResults();
+  //   console.log(allTestResults);
+  // });
   
 });
