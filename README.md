@@ -21,6 +21,12 @@ To run this example project, you'll need:
 5. An up-to-date version of [Google Chrome](https://www.google.com/chrome/downloads/).
 6. A corresponding version of [ChromeDriver](https://chromedriver.chromium.org/downloads).
 
+To install project dependencies, run:
+
+```
+npm install
+```
+
 The main test case is [`acme-bank.test.js`](test/acme-bank.test.js).
 
 To execute tests, set the `APPLITOOLS_API_KEY` environment variable

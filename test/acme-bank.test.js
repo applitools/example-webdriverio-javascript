@@ -46,7 +46,7 @@ describe('ACME Bank', function () {
     // Create a new batch for tests.
     // A batch is the collection of visual checkpoints for a test suite.
     // Batches are displayed in the dashboard, so use meaningful names.
-    batch = new BatchInfo('Applitools Example: WebdriverIO JavaScript with the Ultrafast Grid');
+    batch = new BatchInfo('Applitools Example: WebdriverIO 7 JavaScript with the Ultrafast Grid');
 
     // Create a configuration for Applitools Eyes.
     config = new Configuration();
@@ -84,10 +84,10 @@ describe('ACME Bank', function () {
     // Open Eyes to start visual testing.
     // It is a recommended practice to set all four inputs:
     browser = await eyes.open(
-        browser,                             // WebDriver to "watch"
+        browser,                            // WebDriver to "watch"
         'ACME Bank',                        // The name of the app under test
         this.currentTest.fullTitle(),       // The name of the test case
-        new RectangleSize(1024, 768)         // The viewport size for the local browser
+        new RectangleSize(1024, 768)        // The viewport size for the local browser
     );
   });
   
