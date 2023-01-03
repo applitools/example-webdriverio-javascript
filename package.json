@@ -17,8 +17,5 @@
     "@wdio/spec-reporter": "^7.26.0",
     "wdio-chromedriver-service": "7.3.2",
     "webdriverio": "^7.28.0"
-  },
-  "devDependencies": {
-    "chromedriver": "^108.0.0"
   }
 }
