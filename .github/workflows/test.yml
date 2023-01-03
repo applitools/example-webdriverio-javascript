@@ -1,0 +1,29 @@
+name: Run all tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env: 
+  APPLITOOLS_API_KEY: ${{ secrets.APPLITOOLS_API_KEY }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Clean install the project
+        run: npm ci
+
+      - name: Execute all tests
+        run: npm test
