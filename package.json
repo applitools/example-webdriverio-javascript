@@ -4,7 +4,8 @@
   "description": "An example project for WebdriverIO 7 JavaScript using Applitools Ultrafast Grid",
   "main": "index.js",
   "scripts": {
-    "test": "wdio"
+    "test": "wdio",
+    "test:ci": "wdio wdio-ci.conf.js"
   },
   "author": "Applitools Team <team@applitools.com> (http://www.applitools.com/)",
   "license": "ISC",
