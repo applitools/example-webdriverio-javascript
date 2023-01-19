@@ -116,11 +116,11 @@ describe('ACME Bank', function () {
   
   afterEach(async () => {
 
-    // Quit the WebdriverIO instance
-    await browser.closeWindow();
-
     // Close Eyes to tell the server it should display the results.
     await eyes.closeAsync();
+
+    // Quit the WebdriverIO instance
+    await browser.closeWindow();
 
     // Warning: `eyes.closeAsync()` will NOT wait for visual checkpoints to complete.
     // You will need to check the Applitools dashboard for visual results per checkpoint.
