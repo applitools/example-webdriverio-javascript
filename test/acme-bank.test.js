@@ -46,7 +46,7 @@ describe('ACME Bank', function () {
     // Create a new batch for tests.
     // A batch is the collection of visual checkpoints for a test suite.
     // Batches are displayed in the Eyes Test Manager, so use meaningful names.
-    batch = new BatchInfo('Example: WebdriverIO 7 JavaScript with the Ultrafast Grid');
+    batch = new BatchInfo('Example: WebdriverIO JavaScript with the Ultrafast Grid');
 
     // Create a configuration for Applitools Eyes.
     config = new Configuration();

@@ -1,7 +1,7 @@
 {
   "name": "example-webdriverio-javascript-ufg",
   "version": "1.0.0",
-  "description": "An example project for WebdriverIO 7 JavaScript using Applitools Ultrafast Grid",
+  "description": "An example project for WebdriverIO JavaScript using Applitools Ultrafast Grid",
   "main": "index.js",
   "scripts": {
     "test": "wdio",

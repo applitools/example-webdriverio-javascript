@@ -3,7 +3,7 @@
 This is the example project for the [WebdriverIO JavaScript tutorial](https://applitools.com/tutorials/quickstart/web/webdriverio).
 It shows how to start automating visual tests with the [Applitools Eyes](https://applitools.com/platform/eyes/)
 and the [Ultrafast Grid](https://applitools.com/platform/ultrafast-grid/)
-using [WebdriverIO 7](https://webdriver.io/) in JavaScript.
+using [WebdriverIO](https://webdriver.io/) in JavaScript.
 
 It uses:
 
