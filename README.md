@@ -1,14 +1,14 @@
-# Applitools Example: WebdriverIO 7 JavaScript with the Ultrafast Grid
+# Applitools Example: WebdriverIO JavaScript with the Ultrafast Grid
 
-This is the example project for the [WebdriverIO 7 JavaScript tutorial](https://applitools.com/tutorials/quickstart/web/webdriverio/webdriverio-7).
+This is the example project for the [WebdriverIO JavaScript tutorial](https://applitools.com/tutorials/quickstart/web/webdriverio).
 It shows how to start automating visual tests with the [Applitools Eyes](https://applitools.com/platform/eyes/)
 and the [Ultrafast Grid](https://applitools.com/platform/ultrafast-grid/)
-using [WebdriverIO 7](https://v7.webdriver.io/) in JavaScript.
+using [WebdriverIO 7](https://webdriver.io/) in JavaScript.
 
 It uses:
 
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) as the programming language
-* [WebdriverIO 7](https://v7.webdriver.io/) for browser automation
+* [WebdriverIO](https://webdriver.io/) for browser automation
 * [Google Chrome](https://www.google.com/chrome/downloads/) as the local browser for testing
 * [npm](https://www.npmjs.com/) for dependency management
 * [Applitools Eyes](https://applitools.com/platform/eyes/) for visual testing
@@ -41,4 +41,4 @@ npm test
 ```
 
 **For full instructions on running this project, take our
-[WebdriverIO 7 JavaScript tutorial](https://applitools.com/tutorials/quickstart/web/webdriverio/webdriverio-7)!**
+[WebdriverIO JavaScript tutorial](https://applitools.com/tutorials/quickstart/web/webdriverio)!**
