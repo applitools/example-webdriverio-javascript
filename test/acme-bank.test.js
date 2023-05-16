@@ -1,6 +1,9 @@
 'use strict';
 
+const { remote } = require('webdriverio');
+
 const { Eyes, 
+  ClassicRunner,
   VisualGridRunner, 
   RunnerOptions,
   Target, 
@@ -16,6 +19,12 @@ describe('ACME Bank', function () {
   // It runs the test once locally,
   // and then it performs cross-browser testing against multiple unique browsers in Applitools Ultrafast Grid.
 
+  // Settings to control how tests are run.
+  // These could be set by environment variables or other input mechanisms.
+  // They are hard-coded here to keep the example project simple.
+  const USE_ULTRAFAST_GRID = true;
+  const USE_EXECUTION_CLOUD = true;
+  
   // Test control inputs to read once and share for all tests
   var applitoolsApiKey;
 
@@ -29,7 +38,7 @@ describe('ACME Bank', function () {
 
 
   before(async () => {
-    // This method sets up the configuration for running visual tests in the Ultrafast Grid.
+    // This method sets up the configuration for running visual tests.
     // The configuration is shared by all tests in a test suite, so it belongs in a `before` method.
     // If you have more than one test class, then you should abstract this configuration to avoid duplication. 
 
@@ -38,15 +47,22 @@ describe('ACME Bank', function () {
     // https://applitools.com/tutorials/getting-started/setting-up-your-environment.html
     applitoolsApiKey = process.env.APPLITOOLS_API_KEY;
 
-    // Create the runner for the Ultrafast Grid.
-    // Concurrency refers to the number of visual checkpoints Applitools will perform in parallel.
-    // Warning: If you have a free account, then concurrency will be limited to 1.
-    runner = new VisualGridRunner(new RunnerOptions().testConcurrency(5));
+    if (USE_ULTRAFAST_GRID) {
+      // Create the runner for the Ultrafast Grid.
+      // Concurrency refers to the number of visual checkpoints Applitools will perform in parallel.
+      // Warning: If you have a free account, then concurrency will be limited to 1.
+      runner = new VisualGridRunner(new RunnerOptions().testConcurrency(5));
+    }
+    else {
+      // Create the classic runner.
+      runner = new ClassicRunner();
+    }
 
     // Create a new batch for tests.
     // A batch is the collection of visual checkpoints for a test suite.
     // Batches are displayed in the Eyes Test Manager, so use meaningful names.
-    batch = new BatchInfo('Example: WebdriverIO JavaScript with the Ultrafast Grid');
+    const runnerName = (USE_ULTRAFAST_GRID) ? 'Ultrafast Grid' : 'Classic runner';
+    batch = new BatchInfo(`Example: WebdriverIO JavaScript with the ${runnerName}`);
 
     // Create a configuration for Applitools Eyes.
     config = new Configuration();
@@ -59,16 +75,19 @@ describe('ACME Bank', function () {
     // Set the batch for the config.
     config.setBatch(batch);
 
-    // Add 3 desktop browsers with different viewports for cross-browser testing in the Ultrafast Grid.
-    // Other browsers are also available, like Edge and IE.
-    config.addBrowser(800, 600, BrowserType.CHROME);
-    config.addBrowser(1600, 1200, BrowserType.FIREFOX);
-    config.addBrowser(1024, 768, BrowserType.SAFARI);
+    if (USE_ULTRAFAST_GRID) {
 
-    // Add 2 mobile emulation devices with different orientations for cross-browser testing in the Ultrafast Grid.
-    // Other mobile devices are available, including iOS.
-    config.addDeviceEmulation(DeviceName.Pixel_2, ScreenOrientation.PORTRAIT);
-    config.addDeviceEmulation(DeviceName.Nexus_10, ScreenOrientation.LANDSCAPE);
+      // Add 3 desktop browsers with different viewports for cross-browser testing in the Ultrafast Grid.
+      // Other browsers are also available, like Edge and IE.
+      config.addBrowser(800, 600, BrowserType.CHROME);
+      config.addBrowser(1600, 1200, BrowserType.FIREFOX);
+      config.addBrowser(1024, 768, BrowserType.SAFARI);
+
+      // Add 2 mobile emulation devices with different orientations for cross-browser testing in the Ultrafast Grid.
+      // Other mobile devices are available, including iOS.
+      config.addDeviceEmulation(DeviceName.Pixel_2, ScreenOrientation.PORTRAIT);
+      config.addDeviceEmulation(DeviceName.Nexus_10, ScreenOrientation.LANDSCAPE);
+    }
   });
   
   
@@ -81,27 +100,42 @@ describe('ACME Bank', function () {
     eyes = new Eyes(runner);
     eyes.setConfiguration(config);
 
+    // Set up Execution Cloud if it will be used.
+    if (USE_EXECUTION_CLOUD) {
+      const executionCloudUrl = new URL(await Eyes.getExecutionCloudUrl());
+      const protocol_val = executionCloudUrl.protocol.substring(0, executionCloudUrl.protocol.length - 1);
+      browser = await remote({
+        logLevel: 'trace',
+        protocol: protocol_val,
+        hostname: executionCloudUrl.hostname,
+        port: Number(executionCloudUrl.port),
+        capabilities: {
+          browserName: 'chrome',
+        }
+      });
+    }
+
     // Open Eyes to start visual testing.
     // It is a recommended practice to set all four inputs:
     browser = await eyes.open(
       
-        // WebDriver object to "watch".
-        browser,
-        
-        // The name of the application under test.
-        // All tests for the same app should share the same app name.
-        // Set this name wisely: Applitools features rely on a shared app name across tests.
-        'ACME Bank',
-        
-        // The name of the test case for the given application.
-        // Additional unique characteristics of the test may also be specified as part of the test name,
-        // such as localization information ("Home Page - EN") or different user permissions ("Login by admin").
-        this.currentTest.fullTitle(),
+      // WebDriver object to "watch".
+      browser,
       
-        // The viewport size for the local browser.
-        // Eyes will resize the web browser to match the requested viewport size.
-        // This parameter is optional but encouraged in order to produce consistent results.
-        new RectangleSize(1024, 768)
+      // The name of the application under test.
+      // All tests for the same app should share the same app name.
+      // Set this name wisely: Applitools features rely on a shared app name across tests.
+      'ACME Bank',
+      
+      // The name of the test case for the given application.
+      // Additional unique characteristics of the test may also be specified as part of the test name,
+      // such as localization information ("Home Page - EN") or different user permissions ("Login by admin").
+      this.currentTest.fullTitle(),
+    
+      // The viewport size for the local browser.
+      // Eyes will resize the web browser to match the requested viewport size.
+      // This parameter is optional but encouraged in order to produce consistent results.
+      new RectangleSize(1024, 768)
     );
   });
   
