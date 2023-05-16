@@ -1,9 +1,8 @@
-# Applitools Example: WebdriverIO JavaScript with the Ultrafast Grid
+# Applitools Example: WebdriverIO in JavaScript
 
 This is the example project for the [WebdriverIO JavaScript tutorial](https://applitools.com/tutorials/quickstart/web/webdriverio).
 It shows how to start automating visual tests with the [Applitools Eyes](https://applitools.com/platform/eyes/)
-and the [Ultrafast Grid](https://applitools.com/platform/ultrafast-grid/)
-using [WebdriverIO](https://webdriver.io/) in JavaScript.
+and [WebdriverIO](https://webdriver.io/) in JavaScript.
 
 It uses:
 
@@ -12,7 +11,11 @@ It uses:
 * [Google Chrome](https://www.google.com/chrome/downloads/) as the local browser for testing
 * [npm](https://www.npmjs.com/) for dependency management
 * [Applitools Eyes](https://applitools.com/platform/eyes/) for visual testing
+
+It can also run tests with:
+
 * [Applitools Ultrafast Grid](https://applitools.com/platform/ultrafast-grid/) for cross-browser execution
+* [Applitools Execution Cloud](https://applitools.com/platform/execution-cloud/) for self-healing remote WebDriver sessions
 
 To run this example project, you'll need:
 
@@ -31,6 +34,8 @@ npm install chromedriver --detect_chromedriver_version
 ```
 
 The main test case is [`acme-bank.test.js`](test/acme-bank.test.js).
+By default, the project will run tests with Ultrafast Grid but not Execution Cloud.
+You can change these settings in the test file.
 
 To execute tests, set the `APPLITOOLS_API_KEY` environment variable
 to your [account's API key](https://applitools.com/tutorials/getting-started/setting-up-your-environment.html),
