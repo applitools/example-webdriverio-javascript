@@ -23,7 +23,7 @@ describe('ACME Bank', function () {
   // These could be set by environment variables or other input mechanisms.
   // They are hard-coded here to keep the example project simple.
   const USE_ULTRAFAST_GRID = true;
-  const USE_EXECUTION_CLOUD = true;
+  const USE_EXECUTION_CLOUD = false;
   
   // Test control inputs to read once and share for all tests
   var applitoolsApiKey;
