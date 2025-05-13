@@ -1,49 +1,36 @@
 # Applitools Example: WebdriverIO in JavaScript
 
-This is the example project for the [WebdriverIO JavaScript tutorial](https://applitools.com/tutorials/quickstart/web/webdriverio).
-It shows how to start automating visual tests with the [Applitools Eyes](https://applitools.com/platform/eyes/)
-and [WebdriverIO](https://webdriver.io/) in JavaScript.
+Get started with Applitools Eyes visual testing with this example of using [WDIO](https://webdriver.io/) and our [WDIO SDK](https://applitools.com/tutorials/web/webdriverio).
 
-It uses:
+Learn more about how to install and start this project with our [WDIO tutorial](https://applitools.com/tutorials/quickstart/web/webdriverio)!
 
-* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) as the programming language
-* [WebdriverIO](https://webdriver.io/) for browser automation
-* [Google Chrome](https://www.google.com/chrome/downloads/) as the local browser for testing
-* [npm](https://www.npmjs.com/) for dependency management
-* [Applitools Eyes](https://applitools.com/platform/eyes/) for visual testing
+# Installation & Run
+1. Install the dependencies
+    ```sh
+    npm install
+    npm install chromedriver --detect_chromedriver_version
+    ```
 
-It can also run tests with:
+To authenticate via the Applitools server and run tests, you need to set your API key provided from Applitools Eyes. For details on how to retrieve your API key, see [the Applitools documentation](https://applitools.com/tutorials/getting-started/retrieve-api-key).
 
-* [Applitools Ultrafast Grid](https://applitools.com/platform/ultrafast-grid/) for cross-browser execution
-* [Applitools Execution Cloud](https://applitools.com/platform/execution-cloud/) for self-healing remote WebDriver sessions
+2. Choose one of the following options to set your API Key.
+    * Set your Applitools API Key as an environment variable. 
+        * macOS/Linux: `export APPLITOOLS_API_KEY=<Your API Key>`
+        * Windows: `set APPLITOOLS_API_KEY=<Your API Key>`
+        
+    * Set your Applitools API Key inside the **applitools.config.js** file via the `apiKey` setting.
+        * Note: If you are not using the Eyes public cloud, you will need to update the `serverUrl` to your Eyes server URL in the **applitools.config.js** configuration file or set via an `APPLITOOLS_SERVER_URL` environment variable. See our [documentation](https://applitools.com/tutorials/sdks/webdriverio/advanced) for more information on these settings.
 
-To run this example project, you'll need:
+3. Run the example test
+    ```sh
+    npm tset
+    ```
 
-1. A free [Applitools account](https://auth.applitools.com/users/register).
-2. The [Node.js](https://nodejs.org/en/) version 12 or higher.
-3. A good JavaScript editor, such as [Visual Studio Code](https://code.visualstudio.com/).
-4. [npm](https://www.npmjs.com/) (typically bundled with Node.js).
-5. An up-to-date version of [Google Chrome](https://www.google.com/chrome/downloads/).
-6. A corresponding version of [ChromeDriver](https://chromedriver.chromium.org/downloads).
+4. After the example tests complete. Visit your Applitools Eyes dashboard to view the results.
 
-To install project dependencies, run:
+## More Information
 
-```
-npm install
-npm install chromedriver --detect_chromedriver_version
-```
+Learn more about [Applitools Eyes](https://www.applitools.com) and the [Applitool Ultrafast Grid](https://applitools.com/platform/ultrafast-grid).
 
-The main test case is [`acme-bank.test.js`](test/acme-bank.test.js).
-By default, the project will run tests with Ultrafast Grid but not Execution Cloud.
-You can change these settings in the test file.
-
-To execute tests, set the `APPLITOOLS_API_KEY` environment variable
-to your [account's API key](https://applitools.com/tutorials/getting-started/setting-up-your-environment.html),
-and then run:
-
-```
-npm test
-```
-
-**For full instructions on running this project, take our
-[WebdriverIO JavaScript tutorial](https://applitools.com/tutorials/quickstart/web/webdriverio)!**
+More about the Eyes Storybook SDK:
+* https://www.npmjs.com/package/@applitools/eyes-storybook

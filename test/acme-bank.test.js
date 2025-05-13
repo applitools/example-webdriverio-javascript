@@ -2,13 +2,13 @@
 
 const { remote } = require('webdriverio');
 
-const { Eyes, 
+const { Eyes,
   ClassicRunner,
-  VisualGridRunner, 
+  VisualGridRunner,
   RunnerOptions,
-  Target, 
-  RectangleSize, 
-  Configuration, 
+  Target,
+  RectangleSize,
+  Configuration,
   BatchInfo,
   BrowserType,
   ScreenOrientation,
@@ -24,7 +24,7 @@ describe('ACME Bank', function () {
   // They are hard-coded here to keep the example project simple.
   const USE_ULTRAFAST_GRID = true;
   const USE_EXECUTION_CLOUD = false;
-  
+
   // Test control inputs to read once and share for all tests
   var applitoolsApiKey;
 
@@ -66,7 +66,7 @@ describe('ACME Bank', function () {
 
     // Create a configuration for Applitools Eyes.
     config = new Configuration();
-    
+
     // Set the Applitools API key so test results are uploaded to your account.
     // If you don't explicitly set the API key with this call,
     // then the SDK will automatically read the `APPLITOOLS_API_KEY` environment variable to fetch it.
@@ -89,13 +89,13 @@ describe('ACME Bank', function () {
       config.addDeviceEmulation(DeviceName.Nexus_10, ScreenOrientation.LANDSCAPE);
     }
   });
-  
-  
+
+
   beforeEach(async function () {
     // This method sets up each test with its own ChromeDriver and Applitools Eyes objects.
     // Even though this test will run visual checkpoints on different browsers in the Ultrafast Grid,
     // it still needs to run the test one time locally to capture snapshots.
-    
+
     // Create the Applitools Eyes object connected to the runner and set its configuration.
     eyes = new Eyes(runner);
     eyes.setConfiguration(config);
@@ -118,27 +118,27 @@ describe('ACME Bank', function () {
     // Open Eyes to start visual testing.
     // It is a recommended practice to set all four inputs:
     browser = await eyes.open(
-      
+
       // WebDriver object to "watch".
       browser,
-      
+
       // The name of the application under test.
       // All tests for the same app should share the same app name.
       // Set this name wisely: Applitools features rely on a shared app name across tests.
       'ACME Bank',
-      
+
       // The name of the test case for the given application.
       // Additional unique characteristics of the test may also be specified as part of the test name,
       // such as localization information ("Home Page - EN") or different user permissions ("Login by admin").
       this.currentTest.fullTitle(),
-    
+
       // The viewport size for the local browser.
       // Eyes will resize the web browser to match the requested viewport size.
       // This parameter is optional but encouraged in order to produce consistent results.
       new RectangleSize(1200, 600)
     );
   });
-  
+
   it('should log into a bank account', async () => {
     // This test covers login for the Applitools demo site, which is a dummy banking app.
     // The interactions use typical Selenium calls,
@@ -147,21 +147,21 @@ describe('ACME Bank', function () {
     // Traditional assertions that scrape the page for text values are not needed here.
 
     // Load the login page.
-    await browser.url('https://demo.applitools.com');
+    await browser.url('https://sandbox.applitools.com/bank');
 
     // Verify the full login page loaded correctly.
     await eyes.check(Target.window().fully().withName("Login page"));
-    
+
     // Perform login.
-    await browser.$("#username").setValue("andy");
-    await browser.$("#password").setValue("i<3pandas");
+    await browser.$("#username").setValue("Chris");
+    await browser.$("#password").setValue("CorrectHorseBatteryStaple");
     await browser.$("#log-in").click();
 
     // Verify the full main page loaded correctly.
     // This snapshot uses LAYOUT match level to avoid differences in closing time text.
     await eyes.check(Target.window().fully().withName("Main page").layout());
   });
-  
+
   afterEach(async () => {
 
     // Close Eyes to tell the server it should display the results.
@@ -177,12 +177,12 @@ describe('ACME Bank', function () {
     // If you want the ACME demo app test to wait synchronously for all checkpoints to complete, then use `eyes.close()`.
     // If any checkpoints are unresolved or failed, then `eyes.close()` will make the ACME demo app test fail.
   });
-  
+
   after(async () => {
     // Close the batch and report visual differences to the console.
     // Note that it forces Mocha to wait synchronously for all visual checkpoints to complete.
     const allTestResults = await runner.getAllTestResults();
     console.log(allTestResults);
   });
-  
+
 });

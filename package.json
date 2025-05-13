@@ -10,7 +10,7 @@
   "author": "Applitools Team <team@applitools.com> (http://www.applitools.com/)",
   "license": "ISC",
   "dependencies": {
-    "@applitools/eyes-webdriverio": "^5.44.0",
+    "@applitools/eyes-webdriverio": "^5.58.2",
     "@wdio/cli": "^8.10.2",
     "@wdio/dot-reporter": "^8.10.2",
     "@wdio/local-runner": "^8.10.2",
