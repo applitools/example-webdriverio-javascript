@@ -13,20 +13,24 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Clean install the project
+      - name: Install dependencies
         run: npm ci
 
-      - name: Install ChromeDriver
-        run: npm install chromedriver --detect_chromedriver_version
+      - name: Install matching ChromeDriver
+        run: |
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+' | head -1)
+          CHROME_MAJOR_VERSION=$(echo "$CHROME_VERSION" | cut -d '.' -f 1)
+          echo "Detected Chrome version: $CHROME_VERSION (major: $CHROME_MAJOR_VERSION)"
+          npm install chromedriver@$CHROME_MAJOR_VERSION
 
-      - name: Execute all tests
+      - name: Run tests
         run: npm run test:ci
